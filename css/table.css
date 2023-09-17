@@ -7,8 +7,8 @@
   padding: 24px;
   font-family: "Source Sans Pro", sans-serif;
   margin: 0;
-  position: sticky; /* aaron:加上定位, 讓table-body緊貼在上一個元素下面  */
-  top: 100px;  /* aaron:加上定位，table往下100像素 */
+  position: relative; /* aaron:加上定位stick, 讓table-body緊貼在上一個元素下面  */
+  top: 400px;  /* aaron:加上定位，table往下100像素 */
 }
 
 h1, h2, h3, h4, h5, h6 {

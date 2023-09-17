@@ -21,11 +21,9 @@
     <!-- 引入Bootstrap元件庫 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-
 </head>
 
 <!-- 2. 加上id屬性 -->
-
 <body id="app">
     <!-- Header -->
     <div class="hero-nav">
@@ -48,7 +46,8 @@
                     <label for="exampleFormControlInput1" class="form-label">關鍵字:</label>
                 </div>
                 <div class="col">
-                    <input v-model="user_input" type="email" class="form-control" id="exampleFormControlInput1" placeholder="請輸入要搜尋的站台名稱">
+                    <input v-model="user_input" type="email" class="form-control" id="exampleFormControlInput1"
+                        placeholder="請輸入要搜尋的站台名稱">
                 </div>
                 <div class="col">
                     <!-- Bootstrap按鈕 -->
@@ -189,7 +188,9 @@
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
     <!-- 引入hedaer的Javascript -->
-    <script src="js/index.js"></script>
+    <!-- banner上多出的那個400px的padding-top, 查到兇手了，是header那個元件的  javascript裡面計算有問題，
+        出現的額外padding, 直接移除引入 畫面上的javascript檔案可以解決 -->
+    <!-- <script src="js/index.js"></script> -->
 
     <!-- 引入table的Javascript -->
     <script src="js/table.js"></script>
@@ -223,14 +224,14 @@
         mounted() {
             // 呼叫桃園市Ubike Open Data API
             axios.get('https://data.tycg.gov.tw/api/v1/rest/datastore/a1b4714b-3b75-4ff8-a8f2-cc377e4eaa0f?format=json&limit=999')
-                .then((response) => { 
+                .then((response) => { /* 有拿掉 function 字串*/
                     // handle success 成功拿到資料
                     console.log(response.data.result.records);   /* aaron:指定只保留records裡面的資料就好 */
                     this.ubike_data = response.data.result.records; // 把拿到的ubike資料傳給vue
                 })
                 .catch(function (error) {
                     // handle error 發生錯誤
-                    console.log(error);  
+                    console.log(error);
                 })
                 .finally(function () {
                     // always executed 其他需要完成的動作
